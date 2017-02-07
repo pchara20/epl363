@@ -1,0 +1,26 @@
+grep -E '.+:.+:(1[0-9]|20):.+:.+:.+:.+' /etc/passwd | wc -l
+
+cat /var/log/yum.log | sort -k 5 |uniq | cut -d ' ' -f 5 | grep -E "^li|^gli"
+
+wc -l `find . -name '*.log'`^C
+
+who | sort | uniq | cut -d " " -f 1 | grep -E "^sp|1$"
+
+cat .bash_history | grep -v "[\||\<|\>]" | sort | cut -d " " -f 1 | uniq -c | sort -n | tail -1 | tr -s " " | man `cut -d " " -f 3` | head -20
+
+rm `find -type f -name "*.[0-2][0-9][0-5][0-9]" -printf '%T+ %p\n' | sort | head -n 5 | cut -d "/" -f 2-`
+
+last | grep -v "reboot" | tr -s " "| cut -d " " -f 5 | uniq -c | sort -n | tail -1 | tr -s " " | cut -d " " -f 3
+
+last| grep -w `last | grep -v "reboot" | tr -s " "| cut -d " " -f 5 | uniq -c | sort -n | tail -1 | tr -s " " | cut -d " " -f 3` | cut -d " " -f 1 | uniq -c | sort -nr
+
+
+grep -Fxvf /usr/share/dict/words Desktop/input.txt
+-F, --fixed-strings
+              Interpret PATTERN as a list of fixed strings, separated by newlines, any of which is to be matched.    
+-x, --line-regexp
+              Select only those matches that exactly match the whole line.
+-v, --invert-match
+              Invert the sense of matching, to select non-matching lines.
+-f FILE, --file=FILE
+              Obtain patterns from FILE, one per line.  The empty file contains zero patterns
